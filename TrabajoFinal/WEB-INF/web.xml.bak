@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app>
+
+<servlet>
+  <servlet-name>primer</servlet-name>
+  <servlet-class>AreaResponse</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>Piscina</servlet-name>
+  <servlet-class>Piscina</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>ChequeoNiveles</servlet-name>
+  <servlet-class>ChequeoNiveles</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>CrearPiscinas</servlet-name>
+  <servlet-class>CrearPiscinas</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>Estadisticas</servlet-name>
+  <servlet-class>Estadisticas</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>IngresarValores</servlet-name>
+  <servlet-class>IngresarValores</servlet-class>
+</servlet>
+
+<servlet-mapping>
+  <servlet-name>primer</servlet-name>
+  <url-pattern>/AreaResponse</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>Piscina</servlet-name>
+  <url-pattern>/Piscina</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>ChequeoNiveles</servlet-name>
+  <url-pattern>/ChequeoNiveles</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>CrearPiscinas</servlet-name>
+  <url-pattern>/CrearPiscinas</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>Estadisticas</servlet-name>
+  <url-pattern>/Estadisticas</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>IngresarValores</servlet-name>
+  <url-pattern>/IngresarValores</url-pattern>
+</servlet-mapping>
+
+</web-app>
