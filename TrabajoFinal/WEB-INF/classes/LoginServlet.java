@@ -35,20 +35,27 @@ public class LoginServlet extends HttpServlet {
             if (rs.next()) {
                 String storedPassword = rs.getString("Password");
                 String storedRole = rs.getString("Role");
-                System.out.println(storedRole);
+                boolean status = rs.getBoolean("Status");
+
                 if (password.equals(storedPassword)) {
-                    HttpSession session = request.getSession();
-                    session.setAttribute("username", username);
-                    session.setAttribute("userRole", storedRole);
-                    session.setAttribute("loginTime", LocalDateTime.now());
-                    System.out.println(storedRole);
-                    if ("manager".equals(storedRole)) {
-                        response.sendRedirect("opciones_gestor.html");
+                    if (status) {
+                        HttpSession session = request.getSession();
+                        session.setAttribute("username", username);
+                        session.setAttribute("userRole", storedRole);
+                        session.setAttribute("loginTime", LocalDateTime.now());
+
+                        if ("manager".equals(storedRole)) {
+                            response.sendRedirect("opciones_gestor.html");
+                        } else {
+                            response.sendRedirect("profile.html");
+                        }
                     } else {
-                        response.sendRedirect("profile.html");
+                        response.setContentType("text/html");
+                        response.getWriter().write("<p>Your account has not been activated. Please contact a manager.</p><br>");
+                        response.getWriter().write("<a href='login_gestor.html'>Go back to login</a>");
                     }
                 } else {
-                    response.sendRedirect("login_gestor.html");
+                    response.sendRedirect("index.html");
                 }
             }
         } catch (SQLException e) {
@@ -57,5 +64,6 @@ public class LoginServlet extends HttpServlet {
         }
     }
 }
+
 
 

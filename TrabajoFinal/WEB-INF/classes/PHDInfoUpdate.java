@@ -16,7 +16,8 @@ public class PHDInfoUpdate extends HttpServlet {
         connection = ConnectionUtils.getConnection();
     }
 
-    public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        System.out.println("Received POST request");
         res.setContentType("text/html");
         PrintWriter toClient = res.getWriter();
         HttpSession session = req.getSession();
@@ -26,18 +27,20 @@ public class PHDInfoUpdate extends HttpServlet {
             res.sendRedirect("login.html");
             return;
         }
-
-        String idStr = req.getParameter("UserID");
-        String movil = req.getParameter("Movil");
-        String despacho = req.getParameter("Despacho");
-        String nombre = req.getParameter("Nombre");
+        System.out.println("Received data:");
+        System.out.println("email: " + req.getParameter("email"));
+        System.out.println("mobile: " + req.getParameter("mobile"));
+        System.out.println("office: " + req.getParameter("office"));
+        String idStr = req.getParameter("email");
+        String movil = req.getParameter("mobile");
+        String despacho = req.getParameter("office");
         PHDInfo PHD = new PHDInfo(
                 idStr,
                 null, // Set other fields to null as they are not used in the update
                 null,
                 movil,
                 despacho,
-                nombre);
+                null);
         int n = PHDInfo.updateInfo(connection, PHD);
         res.sendRedirect("profile.html");
     }

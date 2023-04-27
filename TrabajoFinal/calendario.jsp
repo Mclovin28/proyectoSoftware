@@ -126,19 +126,19 @@
                 .click(function () {
                   var newTitle = prompt("Enter new event title:", event.title);
                   var newStart = prompt(
-                    "Enter new start date and time (YYYY-MM-DD HH:MM):",
-                    event.start.format("YYYY-MM-DD HH:mm")
+                    "Enter new start date and time (YYYY-MM-DD HH:MM:SS):",
+                    event.start.format("YYYY-MM-DD HH:mm:ss")
                   );
                   var newEnd = prompt(
-                    "Enter new end date and time (YYYY-MM-DD HH:MM):",
-                    event.end ? event.end.format("YYYY-MM-DD HH:mm") : ""
+                    "Enter new end date and time (YYYY-MM-DD HH:MM:SS):",
+                    event.end ? event.end.format("YYYY-MM-DD HH:mm:ss") : ""
                   );
 
                   $.ajax({
                     url: "/TrabajoFinal/UpdateEventServlet",
                     method: "POST",
                     data: {
-                      eventID: event.eventID,
+                      eventId: event.eventId,
                       title: newTitle,
                       start: newStart,
                       end: newEnd,

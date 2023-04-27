@@ -37,36 +37,26 @@ public class PHDList extends HttpServlet {
         
         if (userRole.equals("manager")) {
             toClient.println("<table border='1'>");
-            toClient.println("<tr><td>User ID</td><td>Password</td><td>Role</td><td>Edit info</td><td>Delete</td></tr>");
+            toClient.println("<tr><td>User ID</td><td>Password</td><td>Role</td><td>Status</td><td>Edit info</td><td>Delete</td><td>Update Status</td></tr>");
             for (int i = 0; i < PHDList.size(); i++) {
                 PHDData PHD = PHDList.elementAt(i);
                 toClient.println("<tr>");
                 toClient.println("<td>" + PHD.UserID + " </td>");
                 toClient.println("<td>" + PHD.Password + " </td>");
                 toClient.println("<td>" + PHD.Role + " </td>");
+                toClient.println("<td>" + (PHD.Status ? "Yes" : "No") + " </td>");
                 toClient.println("<td><a href='PHDEdit?UserID=" + PHD.UserID + "'>Edit PHD</a></td>");
                 toClient.println("<td><a href='PHDDelete?UserID=" + PHD.UserID + "' onclick='return confirm(\"Are you sure you want to delete this user?\");'>Delete</a></td>");
+                toClient.println("<td><a href='PHDUpdateStatus?UserID=" + PHD.UserID + "'>" + (PHD.Status ? "Deactivate" : "Activate") + "</a></td>");
                 toClient.println("</tr>");
 
-            }
-
-            toClient.println("<form method=get action=InsertPHD>");
-            toClient.println("</table>");
-            toClient.println("<h1>Agregar Nuevo Usuario</h1>");
-            toClient.println("<table border='1'>");
-            toClient.println("<tr><td>User ID</td><td>Password</td><td>Role</td></tr>");
-            toClient.println("<tr>");
-            toClient.println("<td> <input type=text id =UserID name=UserID> </td>");
-            toClient.println("<td><input type=text id =Password name=Password></td>");
-            toClient.println("<td><input type=text id =Role name=Role></td>");
-            toClient.println("</table>");
-            toClient.println("<input type=submit value=Agregar></form>");
-
+            }       
             toClient.println("</body></html>");
-
             toClient.println(Utils.footer("PHD List"));
         } else{
             toClient.println("No tienes acceso a esta pagina");
         }
     };
 }
+    
+

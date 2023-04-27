@@ -76,6 +76,89 @@
   <servlet-class>PHDDelete</servlet-class>
 </servlet>
 
+<servlet>
+  <servlet-name>PHDInfoUpdate</servlet-name>
+  <servlet-class>PHDInfoUpdate</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>GetUserGender</servlet-name>
+  <servlet-class>GetUserGender</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>CreateUser</servlet-name>
+  <servlet-class>CreateUser</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>PHDUpdateStatus</servlet-name>
+  <servlet-class>PHDUpdateStatus</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>EventList</servlet-name>
+  <servlet-class>EventList</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>EventEdit</servlet-name>
+  <servlet-class>EventEdit</servlet-class>
+</servlet>
+
+
+<servlet>
+  <servlet-name>EventUpdate</servlet-name>
+  <servlet-class>EventUpdate</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>InsertEvent</servlet-name>
+  <servlet-class>InsertEvent</servlet-class>
+</servlet>
+
+<servlet-mapping>
+  <servlet-name>InsertEvent</servlet-name>
+  <url-pattern>/InsertEvent</url-pattern>
+</servlet-mapping>
+
+
+<servlet-mapping>
+  <servlet-name>EventUpdate</servlet-name>
+  <url-pattern>/EventUpdate</url-pattern>
+</servlet-mapping>
+
+
+<servlet-mapping>
+  <servlet-name>EventEdit</servlet-name>
+  <url-pattern>/EventEdit</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>EventList</servlet-name>
+  <url-pattern>/EventList</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>PHDUpdateStatus</servlet-name>
+  <url-pattern>/PHDUpdateStatus</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>CreateUser</servlet-name>
+  <url-pattern>/CreateUser</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>GetUserGender</servlet-name>
+  <url-pattern>/GetUserGender</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>PHDInfoUpdate</servlet-name>
+  <url-pattern>/PHDInfoUpdate</url-pattern>
+</servlet-mapping>
+
 <servlet-mapping>
   <servlet-name>PHDDelete</servlet-name>
   <url-pattern>/PHDDelete</url-pattern>

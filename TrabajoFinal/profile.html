@@ -7,52 +7,74 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <script>
-  function toggleEditMode() {
-  const isEditMode = document.getElementById('editButton').innerText === 'Guardar';
-  const fields = ['fullName', 'email', 'mobile', 'office'];
+  function fetchUserGender() {
+  $.ajax({
+    url: "/TrabajoFinal/GetUserGender",
+    method: "GET",
+    success: function(response) {
+      setImage(response.gender);
+    },
+    error: function(response) {
+      console.log("Error fetching user gender:", response);
+    }
+  });
+}
 
-  if (isEditMode) {
-    // Send an AJAX request to the servlet to update the info in the database
-    const UserID = document.getElementById('emailInput').value;
-    const Movil = document.getElementById('mobileInput').value;
-    const Despacho = document.getElementById('officeInput').value;
-    const Nombre = document.getElementById('fullNameInput').value;
-
-    $.ajax({
-      url: "/TrabajoFinal/PHDInfoUpdate",
-      method: "GET",
-      data: {
-        UserID: UserID,
-        Movil: Movil,
-        Despacho: Despacho,
-        Nombre: Nombre
-      },
-      success: function() {
-        console.log('Updated info successfully');
-      },
-      error: function() {
-        console.log('Error updating info');
-      }
-    });
+function setImage(gender) {
+  if (gender === "masculino") {
+    document.getElementById("ProflePicture").src = "https://static.vecteezy.com/system/resources/previews/002/002/403/original/man-with-beard-avatar-character-isolated-icon-free-vector.jpg";
+  } else if (gender === "femenino") {
+    document.getElementById("ProflePicture").src = "https://static.vecteezy.com/system/resources/previews/014/212/681/original/female-user-profile-avatar-is-a-woman-a-character-for-a-screen-saver-with-emotions-for-website-and-mobile-app-design-illustration-on-a-white-isolated-background-vector.jpg";
+  } else {
+    document.getElementById("ProflePicture").src = "https://static.vecteezy.com/system/resources/previews/009/734/564/original/default-avatar-profile-icon-of-social-media-user-vector.jpg";
   }
-    
+}
+
+
+function toggleEditMode() {
+  const isEditMode = document.getElementById('editButton').innerText === 'Guardar';
+  const fields = ['email', 'mobile', 'office'];
+  
+  if (isEditMode) {
+    const updatedData = {};
+
     fields.forEach(field => {
       const displayElement = document.getElementById(field + 'Display');
       const inputElement = document.getElementById(field + 'Input');
       
-      if (isEditMode) {
-        displayElement.style.display = 'block';
-        inputElement.style.display = 'none';
-        displayElement.innerText = inputElement.value;
-      } else {
-        displayElement.style.display = 'none';
-        inputElement.style.display = 'block';
-        inputElement.value = displayElement.innerText;
+      displayElement.style.display = 'block';
+      inputElement.style.display = 'none';
+      displayElement.innerText = inputElement.value;
+
+      updatedData[field] = inputElement.value;
+    });
+    console.log("Updated data:", updatedData);
+    // Make the AJAX call to update the data in the server
+    $.ajax({
+      url: "/TrabajoFinal/PHDInfoUpdate",
+      method: "POST",
+      data: updatedData,
+      success: function(response) {
+        console.log("Data updated successfully:", response);
+      },
+      error: function(response) {
+        console.log("Error updating data:", response);
       }
     });
-    
-    document.getElementById('editButton').innerText = isEditMode ? 'Editar' : 'Guardar';
+  } else {
+    fields.forEach(field => {
+      const displayElement = document.getElementById(field + 'Display');
+      const inputElement = document.getElementById(field + 'Input');
+      
+      displayElement.style.display = 'none';
+      inputElement.style.display = 'block';
+      inputElement.value = displayElement.innerText;
+    });
   }
+  
+  document.getElementById('editButton').innerText = isEditMode ? 'Editar' : 'Guardar';
+}
+
 
   function fetchHoursData() {
   $.ajax({
@@ -111,6 +133,7 @@ function fetchUserInfo() {
   $(document).ready(function() {
     fetchHoursData();
     fetchUserInfo();
+    fetchUserGender();
   });
   function clearCookies() {
   document.cookie.split(';').forEach(function(c) {
@@ -160,7 +183,7 @@ function logout() {
                   <div class="card">
                     <div class="card-body">
                       <div class="d-flex flex-column align-items-center text-center">
-                        <img src="https://static.vecteezy.com/system/resources/previews/014/212/681/original/female-user-profile-avatar-is-a-woman-a-character-for-a-screen-saver-with-emotions-for-website-and-mobile-app-design-illustration-on-a-white-isolated-background-vector.jpg" alt="Admin" class="rounded-circle" width="150">
+                        <img id="ProflePicture" alt="Admin" class="rounded-circle" width="150">
                         <div class="mt-3">
                           <h2 id="Nombre"></h2>
                           <p class="text-secondary mb-1" id="Area"></p>
@@ -244,7 +267,11 @@ function logout() {
                     </div>
                   </div>
     
-    
+                  <div>
+                    <form method="GET" action="eventosdoctorando.html">
+                    <input type="submit" value="proximos eventos">
+                    </form>
+                  </div>
     
                 </div>
               </div>

@@ -9,6 +9,7 @@ public class PHDData {
     String UserID;
     String Password;
 	String Role;
+	boolean Status;
 
 
 	//PHDData (int ID, String UserID, String Password) { // constructor (nombre igual a la clase)
@@ -23,15 +24,22 @@ public class PHDData {
         this.Password = Password;
 		this.Role=Role;
 
+		
     }
-	
-	
+	PHDData (String UserID, String Password, String Role, boolean Status) { // constructor (nombre igual a la clase)
+
+        this.UserID  = UserID;
+        this.Password = Password;
+		this.Role=Role;
+		this.Status=Status;
+
+    }
 	
 	
 	public static Vector<PHDData> getPHDList(Connection connection){
         Vector<PHDData> vec = new Vector<PHDData>();
 //definir el sql
-        String sql = "Select UserID, Password, Role FROM Users";
+        String sql = "Select UserID, Password, Role, Status FROM Users";
 		sql += " WHERE Role='phd'";
         System.out.println("getPHDList: " + sql); // verificar lo que hago
 		
@@ -44,7 +52,8 @@ public class PHDData {
                 PHDData PHD = new PHDData( // siempre que creas un tipo de variable pones new por delante
                     result.getString("UserID"),
                     result.getString("Password"),
-					result.getString("Role")
+					result.getString("Role"),
+					result.getBoolean("Status")
                 );
                 vec.addElement(PHD);
             }
