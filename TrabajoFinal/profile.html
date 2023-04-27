@@ -8,8 +8,33 @@
 </head>
 <script>
   function toggleEditMode() {
-    const isEditMode = document.getElementById('editButton').innerText === 'Guardar';
-    const fields = ['fullName', 'email', 'mobile', 'office'];
+  const isEditMode = document.getElementById('editButton').innerText === 'Guardar';
+  const fields = ['fullName', 'email', 'mobile', 'office'];
+
+  if (isEditMode) {
+    // Send an AJAX request to the servlet to update the info in the database
+    const UserID = document.getElementById('emailInput').value;
+    const Movil = document.getElementById('mobileInput').value;
+    const Despacho = document.getElementById('officeInput').value;
+    const Nombre = document.getElementById('fullNameInput').value;
+
+    $.ajax({
+      url: "/TrabajoFinal/PHDInfoUpdate",
+      method: "GET",
+      data: {
+        UserID: UserID,
+        Movil: Movil,
+        Despacho: Despacho,
+        Nombre: Nombre
+      },
+      success: function() {
+        console.log('Updated info successfully');
+      },
+      error: function() {
+        console.log('Error updating info');
+      }
+    });
+  }
     
     fields.forEach(field => {
       const displayElement = document.getElementById(field + 'Display');

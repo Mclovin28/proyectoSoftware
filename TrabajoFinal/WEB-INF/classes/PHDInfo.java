@@ -54,4 +54,28 @@ public class PHDInfo {
 		}
 		return PHD;
 	}
+
+		public static int updateInfo(Connection connection, PHDInfo PHD) {
+		String sql ="UPDATE Info ";
+			sql+= "SET UserID = ?, Movil = ?, Despacho = ?";
+			sql+= " WHERE Nombre = ?";
+			System.out.println("metodoUpdate: " + sql);
+			int n = 0;
+		try {
+			
+			PreparedStatement stmtUpdate= connection.prepareStatement(sql);
+			stmtUpdate.setString(1, PHD.UserID);
+			stmtUpdate.setString(2, PHD.Movil);
+			stmtUpdate.setString(3, PHD.Despacho);
+			stmtUpdate.setString(4, PHD.Nombre);
+			// al se run update se guarda en un int n
+			n = stmtUpdate.executeUpdate();
+			stmtUpdate.close();
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+			System.out.println("Error in metodoUpdate: " + sql + " Exception: " + e);
+		}
+			return n;
+	}
 }
