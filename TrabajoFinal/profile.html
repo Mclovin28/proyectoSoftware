@@ -53,8 +53,39 @@
   });
 }
 
+function fetchUserInfo() {
+  console.log("Fetching user info...");
+  $.ajax({
+    url: "/TrabajoFinal/GetUserInfo",
+    method: "GET",
+    success: function(response) {
+      console.log("User info fetched successfully:", response);
+      const UserID = response.UserID;
+      const Area = response.Area;
+      const Ciudad = response.Ciudad;
+      const Movil = response.Movil;
+      const Despacho = response.Despacho;
+      const Nombre = response.Nombre;
+
+      document.getElementById("Nombre").innerHTML=Nombre;
+      document.getElementById("fullNameDisplay").innerHTML=Nombre;
+      document.getElementById("Area").innerHTML="Doctorando Area de "+Area;
+      document.getElementById("Ciudad").innerHTML=Ciudad;
+      document.getElementById("mobileDisplay").innerHTML=Movil;
+      document.getElementById("officeDisplay").innerHTML=Despacho;
+      document.getElementById("emailDisplay").innerHTML=UserID;
+
+
+    },
+    error: function(response) {
+      console.log("Error fetching user info:", response);
+    }
+  });
+}
+
   $(document).ready(function() {
     fetchHoursData();
+    fetchUserInfo();
   });
   function clearCookies() {
   document.cookie.split(';').forEach(function(c) {
@@ -106,9 +137,9 @@ function logout() {
                       <div class="d-flex flex-column align-items-center text-center">
                         <img src="https://static.vecteezy.com/system/resources/previews/014/212/681/original/female-user-profile-avatar-is-a-woman-a-character-for-a-screen-saver-with-emotions-for-website-and-mobile-app-design-illustration-on-a-white-isolated-background-vector.jpg" alt="Admin" class="rounded-circle" width="150">
                         <div class="mt-3">
-                          <h2>Carlota Parrilla Moreno</h2>
-                          <p class="text-secondary mb-1">Doctorando Area de Organizacion</p>
-                          <p class="text-muted font-size-sm">San Sebastian, Espana</p><BR>
+                          <h2 id="Nombre"></h2>
+                          <p class="text-secondary mb-1" id="Area"></p>
+                          <p class="text-muted font-size-sm" id="Ciudad"></p><BR>
                           <button class="btn btn-outline-primary" onclick="window.location.href='https://mail.google.com'">Contactar</button>
                         </div>
                       </div>
@@ -123,7 +154,7 @@ function logout() {
                           <h6 class="mb-0">Nombre Completo</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                          <span id="fullNameDisplay">Carlota Parrilla Moreno</span>
+                          <span id="fullNameDisplay"></span>
                           <input type="text" id="fullNameInput" style="display: none;">
                         </div>
                       </div>
@@ -133,7 +164,7 @@ function logout() {
                           <h6 class="mb-0">Correo</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                          <span id="emailDisplay">cparrillamo@alumni.unav.es</span>
+                          <span id="emailDisplay" ></span>
                           <input type="email" id="emailInput" style="display: none;">
                         </div>
                       </div>
@@ -143,7 +174,7 @@ function logout() {
                           <h6 class="mb-0">Movil</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                          <span id="mobileDisplay">(+34) 606 98 11 26</span>
+                          <span id="mobileDisplay"></span>
                           <input type="tel" id="mobileInput" style="display: none;">
                         </div>
                       </div>
@@ -153,7 +184,7 @@ function logout() {
                           <h6 class="mb-0">Despacho</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                          <span id="officeDisplay">Ibaeta, despacho A6</span>
+                          <span id="officeDisplay"></span>
                           <input type="text" id="officeInput" style="display: none;">
                         </div>
                       </div>

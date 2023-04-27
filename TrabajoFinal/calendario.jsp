@@ -105,54 +105,86 @@
           selectHelper: true,
           eventClick: function (event, jsEvent, view) {
             if (userRole === "manager") {
-              var action = prompt(
-                "Enter 'edit' to edit the event or 'delete' to delete the event."
-              );
+              var modal = $("<div>")
+                .css({
+                  position: "fixed",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  backgroundColor: "white",
+                  padding: "20px",
+                  zIndex: 1000,
+                  boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
+                })
+                .appendTo($("body"));
 
-              if (action === "delete") {
-                $.ajax({
-                  url: "/TrabajoFinal/DeleteEventServlet",
-                  method: "POST",
-                  data: {
-                    eventId: event.eventId, // Use eventId instead of eventID
-                  },
-                  success: function (response) {
-                    console.log("Event deletion success:", response);
-                    $("#calendar").fullCalendar("refetchEvents");
-                  },
-                  error: function (response) {
-                    console.log("Event deletion error:", response);
-                  },
-                });
-              } else if (action === "edit") {
-                var newTitle = prompt("Enter new event title:", event.title);
-                var newStart = prompt(
-                  "Enter new start date and time (YYYY-MM-DD HH:MM):",
-                  event.start.format("YYYY-MM-DD HH:mm")
-                );
-                var newEnd = prompt(
-                  "Enter new end date and time (YYYY-MM-DD HH:MM):",
-                  event.end ? event.end.format("YYYY-MM-DD HH:mm") : ""
-                );
+              $("<button>")
+                .text("Edit")
+                .css({
+                  marginRight: "10px",
+                })
+                .click(function () {
+                  var newTitle = prompt("Enter new event title:", event.title);
+                  var newStart = prompt(
+                    "Enter new start date and time (YYYY-MM-DD HH:MM):",
+                    event.start.format("YYYY-MM-DD HH:mm")
+                  );
+                  var newEnd = prompt(
+                    "Enter new end date and time (YYYY-MM-DD HH:MM):",
+                    event.end ? event.end.format("YYYY-MM-DD HH:mm") : ""
+                  );
 
-                $.ajax({
-                  url: "/TrabajoFinal/UpdateEventServlet",
-                  method: "POST",
-                  data: {
-                    eventID: event.eventID, // Send the EventID instead of the user ID
-                    title: newTitle,
-                    start: newStart,
-                    end: newEnd,
-                  },
-                  success: function (response) {
-                    console.log("Event update success:", response);
-                    $("#calendar").fullCalendar("refetchEvents");
-                  },
-                  error: function (response) {
-                    console.log("Event update error:", response);
-                  },
-                });
-              }
+                  $.ajax({
+                    url: "/TrabajoFinal/UpdateEventServlet",
+                    method: "POST",
+                    data: {
+                      eventID: event.eventID,
+                      title: newTitle,
+                      start: newStart,
+                      end: newEnd,
+                    },
+                    success: function (response) {
+                      console.log("Event update success:", response);
+                      $("#calendar").fullCalendar("refetchEvents");
+                    },
+                    error: function (response) {
+                      console.log("Event update error:", response);
+                    },
+                  });
+                  modal.remove();
+                })
+                .appendTo(modal);
+
+              $("<button>")
+                .text("Delete")
+                .click(function () {
+                  $.ajax({
+                    url: "/TrabajoFinal/DeleteEventServlet",
+                    method: "POST",
+                    data: {
+                      eventId: event.eventId,
+                    },
+                    success: function (response) {
+                      console.log("Event deletion success:", response);
+                      $("#calendar").fullCalendar("refetchEvents");
+                    },
+                    error: function (response) {
+                      console.log("Event deletion error:", response);
+                    },
+                  });
+                  modal.remove();
+                })
+                .appendTo(modal);
+
+              $("<button>")
+                .text("Cancel")
+                .css({
+                  marginLeft: "10px",
+                })
+                .click(function () {
+                  modal.remove();
+                })
+                .appendTo(modal);
             }
           },
         });
