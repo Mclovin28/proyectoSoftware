@@ -6,7 +6,35 @@
     <title>Area interna Gestor</title>
     <link rel="stylesheet" href="style.css">
 </head>
+<script>
+    function clearLocalStorage() {
+  localStorage.clear();
+}
+
+function clearSessionStorage() {
+  sessionStorage.clear();
+}
+function clearCookies() {
+  document.cookie.split(';').forEach(function(c) {
+    document.cookie = c.replace(/^ +/, '').replace(/=.*/, '=;expires=' + new Date().toUTCString() + ';path=/');
+  });
+}
+
+function logout() {
+  // Perform the cleanup
+  clearCookies();
+  clearLocalStorage();
+  clearSessionStorage();
+
+  // Redirect the user to the logout servlet
+  window.location.href = '/TrabajoFinal/LogoutServlet';
+}
+</script>
 <body>
+    <nav>
+        <!-- Add other navigation items here -->
+        <button onclick="logout()" class="btn btn-outline-danger">Logout</button>
+    </nav>
     <div class="background-image"></div>
     <div class="login-container">
         <h1>¡BIENVENIDO GESTOR!</h1>

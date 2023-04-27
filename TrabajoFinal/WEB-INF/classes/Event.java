@@ -3,6 +3,7 @@ public class Event {
     private String start;
     private String end;
     private String userId; // Add this line to include the user ID field
+    private String eventId;
 
     public Event(String title, String start, String end, String userId) { // Update the constructor
         this.title = title;
@@ -10,8 +11,16 @@ public class Event {
         this.end = end;
         this.userId = userId; // Add this line to set the user ID
     }
-
-
+    public Event(String eventId, String title, String start, String end, String userId) {
+        this.eventId = eventId;
+        this.title = title;
+        this.start = start;
+        this.end = end;
+        this.userId = userId;
+    }
+    public String getEventId() {
+        return eventId;
+    }
     public String getTitle() {
         return title;
     }

@@ -1,0 +1,54 @@
+body {
+    background-color: #ffffff;
+    color: #93722c;
+    font-family: sans-serif;
+    margin: 0px;
+}
+table {
+    border: 3px solid #93722c;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 0px auto 10px;
+    width: 80%;
+}
+td {
+    height: 1.5em;
+    padding-left: 15px;
+    color: #333333;
+    border: 1px solid #93722c;
+    border-radius: 4px;
+}
+td.number {
+    text-align: right;
+    padding-right: 15px;
+}
+form {
+    text-align: center;
+}
+
+/* Menu Format Colors: tecnun: #93722c or blue: #462b96 - #5d38ca */
+div.menu {
+    text-align: center;
+    background-color: #93722c;
+    padding: 9px 0px;
+}
+div.menu a {
+    padding: 9px 10px;
+    color: white;
+    background-color: #93722c;
+    text-decoration: none;
+}
+div.menu a:hover {
+    background-color: black;;
+}
+div.brigl 
+{
+    background-color: #ffffff;
+    border:1px solid black;
+    /*
+    width:600px;
+    height:400px;
+    */
+    width: 100%;
+    height: 500px;
+		}

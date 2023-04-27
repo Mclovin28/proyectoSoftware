@@ -2,6 +2,16 @@
 <web-app>
 
 <servlet>
+  <servlet-name>MensajeList</servlet-name>
+  <servlet-class>MensajeList</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>MensajeEdit</servlet-name>
+  <servlet-class>MensajeEdit</servlet-class>
+</servlet>
+
+<servlet>
   <servlet-name>FetchEventsServlet</servlet-name>
   <servlet-class>FetchEventsServlet</servlet-class>
 </servlet>
@@ -10,6 +20,116 @@
   <servlet-name>CreateEventServlet</servlet-name>
   <servlet-class>CreateEventServlet</servlet-class>
 </servlet>
+
+<servlet>
+  <servlet-name>LoginServlet</servlet-name>
+  <servlet-class>LoginServlet</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>GetUserRoleServlet</servlet-name>
+  <servlet-class>GetUserRoleServlet</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>UserRoleServlet</servlet-name>
+  <servlet-class>UserRoleServlet</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>DeleteEventServlet</servlet-name>
+  <servlet-class>DeleteEventServlet</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>UpdateEventServlet</servlet-name>
+  <servlet-class>UpdateEventServlet</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>PHDEdit</servlet-name>
+  <servlet-class>PHDEdit</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>PHDList</servlet-name>
+  <servlet-class>PHDList</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>PHDUpdate</servlet-name>
+  <servlet-class>PHDUpdate</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>InsertPHD</servlet-name>
+  <servlet-class>InsertPHD</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>LogoutServlet</servlet-name>
+  <servlet-class>LogoutServlet</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>PHDDelete</servlet-name>
+  <servlet-class>PHDDelete</servlet-class>
+</servlet>
+
+<servlet-mapping>
+  <servlet-name>PHDDelete</servlet-name>
+  <url-pattern>/PHDDelete</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>LogoutServlet</servlet-name>
+  <url-pattern>/LogoutServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>InsertPHD</servlet-name>
+  <url-pattern>/InsertPHD</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>PHDUpdate</servlet-name>
+  <url-pattern>/PHDUpdate</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>PHDList</servlet-name>
+  <url-pattern>/PHDList</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>PHDEdit</servlet-name>
+  <url-pattern>/PHDEdit</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>UpdateEventServlet</servlet-name>
+  <url-pattern>/UpdateEventServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>DeleteEventServlet</servlet-name>
+  <url-pattern>/DeleteEventServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>UserRoleServlet</servlet-name>
+  <url-pattern>/UserRoleServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>GetUserRoleServlet</servlet-name>
+  <url-pattern>/GetUserRoleServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>LoginServlet</servlet-name>
+  <url-pattern>/LoginServlet</url-pattern>
+</servlet-mapping>
 
 <servlet-mapping>
   <servlet-name>CreateEventServlet</servlet-name>
@@ -22,5 +142,15 @@
   <url-pattern>/FetchEventsServlet</url-pattern>
 </servlet-mapping>
 
+<servlet-mapping>
+  <servlet-name>MensajeEdit</servlet-name>
+  <url-pattern>/MensajeEdit</url-pattern>
+</servlet-mapping> 
+
+
+<servlet-mapping>
+  <servlet-name>MensajeList</servlet-name>
+  <url-pattern>/MensajeList</url-pattern>
+</servlet-mapping>
 
 </web-app>
