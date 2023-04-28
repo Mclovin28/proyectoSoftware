@@ -39,6 +39,12 @@ public class PHDInfo {
 		this.Sexo = Sexo;
 
     }
+	PHDInfo(String UserID, String Movil, String Despacho, String Nombre) {
+        this.UserID  = UserID;
+        this.Movil = Movil;
+		this.Despacho=Despacho;
+		this.Nombre=Nombre;
+    }
 	PHDInfo(String Sexo) {
 		this.Sexo = Sexo;
     }

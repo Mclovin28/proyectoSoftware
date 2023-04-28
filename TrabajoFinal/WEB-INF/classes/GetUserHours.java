@@ -36,14 +36,14 @@ public class GetUserHours extends HttpServlet {
         // Declare and initialize the Horas object
         Horas hours = new Horas();
         hours.completedHours = 0;
-        hours.remainingHours = 0;
+        hours.remainingHours = 60;
 
         if (userId != null) { // Check if the user ID exists in the session
             try {
                 Connection conn = ConnectionUtils.getConnection(); // Use ConnectionUtils to get the connection
                 Statement stmt = conn.createStatement();
                 hours = Horas.getHours(conn, id,loginTime);
-                ConnectionUtils.close(conn); // Use ConnectionUtils to close the connection
+                System.out.println(hours.remainingHours);
             } catch (Exception e) {
                 e.printStackTrace();
             }

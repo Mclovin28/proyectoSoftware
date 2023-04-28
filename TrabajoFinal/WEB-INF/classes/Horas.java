@@ -44,9 +44,8 @@ public class Horas {
     }
     public static Horas getHours(Connection connection, String id, LocalDateTime loginTime) {
         double completedHours = 0;
-        double remainingHours = 0;
+        double remainingHours = 60;
         double assignedHours = 0;
-        double totalHours = 60;
         Horas hours = new Horas();
         String sql = "SELECT FechaI, FechaF FROM Fecha";
         sql += " WHERE ID = ?";
@@ -68,14 +67,9 @@ public class Horas {
                 } else {
                     assignedHours += hoursWithFractions;
                 }
-    
-                remainingHours = totalHours - completedHours - assignedHours;
-                hours = new Horas(
-                    completedHours,
-                    remainingHours,
-                    assignedHours
-                );
             }
+            remainingHours -= (completedHours + assignedHours);
+            hours = new Horas(completedHours,remainingHours,assignedHours);
         } catch(SQLException e) {
             e.printStackTrace();
             System.out.println("Error in getHours: " + sql + " Exception: " + e);
