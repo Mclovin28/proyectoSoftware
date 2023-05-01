@@ -11,6 +11,7 @@ public class Event {
         this.end = end;
         this.userId = userId; // Add this line to set the user ID
     }
+
     public Event(String eventId, String title, String start, String end, String userId) {
         this.eventId = eventId;
         this.title = title;
@@ -18,9 +19,11 @@ public class Event {
         this.end = end;
         this.userId = userId;
     }
+
     public String getEventId() {
         return eventId;
     }
+
     public String getTitle() {
         return title;
     }
@@ -44,7 +47,8 @@ public class Event {
     public void setEnd(String end) {
         this.end = end;
     }
-	public String getUserId() {
+
+    public String getUserId() {
         return userId;
     }
 }

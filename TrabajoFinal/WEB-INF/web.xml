@@ -122,6 +122,76 @@
   <servlet-class>CheckUserExistence</servlet-class>
 </servlet>
 
+<servlet>
+  <servlet-name>CreateEvent</servlet-name>
+  <servlet-class>CreateEvent</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>SignUpEvent</servlet-name>
+  <servlet-class>SignUpEvent</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>MyEvents</servlet-name>
+  <servlet-class>MyEvents</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>UserStatistics</servlet-name>
+  <servlet-class>UserStatistics</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>MensajeUpdate</servlet-name>
+  <servlet-class>MensajeUpdate</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>InsertMensaje</servlet-name>
+  <servlet-class>InsertMensaje</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>NuevoMensaje</servlet-name>
+  <servlet-class>NuevoMensaje</servlet-class>
+</servlet>
+
+<servlet-mapping>
+  <servlet-name>NuevoMensaje</servlet-name>
+  <url-pattern>/NuevoMensaje</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>MensajeUpdate</servlet-name>
+  <url-pattern>/MensajeUpdate</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>InsertMensaje</servlet-name>
+  <url-pattern>/InsertMensaje</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>UserStatistics</servlet-name>
+  <url-pattern>/UserStatistics</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>MyEvents</servlet-name>
+  <url-pattern>/MyEvents</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>SignUpEvent</servlet-name>
+  <url-pattern>/SignUpEvent</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>CreateEvent</servlet-name>
+  <url-pattern>/CreateEvent</url-pattern>
+</servlet-mapping>
+
 <servlet-mapping>
   <servlet-name>CheckUserExistence</servlet-name>
   <url-pattern>/CheckUserExistence</url-pattern>

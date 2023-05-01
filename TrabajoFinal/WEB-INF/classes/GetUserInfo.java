@@ -17,7 +17,7 @@ public class GetUserInfo extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession(); // Get the session object
-        String userId = (String) session.getAttribute("username"); 
+        String userId = (String) session.getAttribute("username");
         System.out.println(userId);
         PHDInfo info = null;
         if (userId != null) { // Check if the user ID exists in the session

@@ -23,25 +23,27 @@ import java.time.format.DateTimeFormatter;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 
-
 public class Horas {
     double completedHours;
     double remainingHours;
     double assignedHours;
-    
-    Horas (double completedHours, double remainingHours) {
-        this.completedHours    = completedHours;
-        this.remainingHours  = remainingHours;
+
+    Horas(double completedHours, double remainingHours) {
+        this.completedHours = completedHours;
+        this.remainingHours = remainingHours;
     }
-    Horas (double completedHours, double remainingHours, double assignedHours) {
-        this.completedHours    = completedHours;
-        this.remainingHours  = remainingHours;
+
+    Horas(double completedHours, double remainingHours, double assignedHours) {
+        this.completedHours = completedHours;
+        this.remainingHours = remainingHours;
         this.assignedHours = assignedHours;
     }
-    Horas(){
-        this.completedHours    = 0;
-        this.remainingHours  = 0;
+
+    Horas() {
+        this.completedHours = 0;
+        this.remainingHours = 0;
     }
+
     public static Horas getHours(Connection connection, String id, LocalDateTime loginTime) {
         double completedHours = 0;
         double remainingHours = 60;
@@ -51,17 +53,17 @@ public class Horas {
         sql += " WHERE ID = ?";
         System.out.println("Horas: " + sql);
         try {
-            PreparedStatement pstmt=connection.prepareStatement(sql);
-            pstmt.setString(1,id);
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1, id);
             ResultSet result = pstmt.executeQuery();
-            while(result.next()) {
+            while (result.next()) {
                 Timestamp start = result.getTimestamp("FechaI");
                 Timestamp end = result.getTimestamp("FechaF");
                 LocalDateTime startDateTime = start.toLocalDateTime();
                 LocalDateTime endDateTime = end.toLocalDateTime();
                 Duration duration = Duration.between(startDateTime, endDateTime);
                 double hoursWithFractions = duration.toMinutes() / 60.0;
-    
+
                 if (endDateTime.isBefore(loginTime) || endDateTime.isEqual(loginTime)) {
                     completedHours += hoursWithFractions;
                 } else {
@@ -69,13 +71,13 @@ public class Horas {
                 }
             }
             remainingHours -= (completedHours + assignedHours);
-            hours = new Horas(completedHours,remainingHours,assignedHours);
-        } catch(SQLException e) {
+            hours = new Horas(completedHours, remainingHours, assignedHours);
+        } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Error in getHours: " + sql + " Exception: " + e);
         }
-        System.out.println("Horas realizadas"+hours.completedHours+"Horas restantes:"+ hours.remainingHours+"Horas asignadas:"+ hours.assignedHours+" por:"+ id);
+        System.out.println("Horas realizadas" + hours.completedHours + "Horas restantes:" + hours.remainingHours
+                + "Horas asignadas:" + hours.assignedHours + " por:" + id);
         return hours;
     }
 }
-    

@@ -17,7 +17,8 @@ import javax.servlet.http.HttpSession;
 public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
@@ -51,7 +52,8 @@ public class LoginServlet extends HttpServlet {
                         }
                     } else {
                         response.setContentType("text/html");
-                        response.getWriter().write("<p>Your account has not been activated. Please contact a manager.</p><br>");
+                        response.getWriter()
+                                .write("<p>Your account has not been activated. Please contact a manager.</p><br>");
                         response.getWriter().write("<a href='login_gestor.html'>Go back to login</a>");
                     }
                 } else {
@@ -64,6 +66,3 @@ public class LoginServlet extends HttpServlet {
         }
     }
 }
-
-
-

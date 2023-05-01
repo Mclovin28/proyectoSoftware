@@ -16,24 +16,21 @@ public class InsertPHD extends HttpServlet {
         connection = ConnectionUtils.getConnection();
     }
 
-    public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException  {
+    public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         res.setContentType("text/html");
-		PrintWriter toClient = res.getWriter();
-		
-		//sacas estos nombres de categoryedit
-		String ID = req.getParameter("UserID");
-		String pass = req.getParameter("Password");
-		String role = req.getParameter("Role");
-		
-        PHDData PHD = new PHDData(
-            ID,
-            pass,
-			role
-        );
-        int n = PHDData.InsertPHD(connection, PHD);
-		res.sendRedirect("PHDList");
+        PrintWriter toClient = res.getWriter();
 
+        // sacas estos nombres de categoryedit
+        String ID = req.getParameter("UserID");
+        String pass = req.getParameter("Password");
+        String role = req.getParameter("Role");
+
+        PHDData PHD = new PHDData(
+                ID,
+                pass,
+                role);
+        int n = PHDData.InsertPHD(connection, PHD);
+        res.sendRedirect("PHDList");
 
     }
 }
-	

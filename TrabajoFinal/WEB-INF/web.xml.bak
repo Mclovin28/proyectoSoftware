@@ -2,6 +2,16 @@
 <web-app>
 
 <servlet>
+  <servlet-name>MensajeList</servlet-name>
+  <servlet-class>MensajeList</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>MensajeEdit</servlet-name>
+  <servlet-class>MensajeEdit</servlet-class>
+</servlet>
+
+<servlet>
   <servlet-name>FetchEventsServlet</servlet-name>
   <servlet-class>FetchEventsServlet</servlet-class>
 </servlet>
@@ -60,6 +70,169 @@
   <servlet-name>LogoutServlet</servlet-name>
   <servlet-class>LogoutServlet</servlet-class>
 </servlet>
+
+<servlet>
+  <servlet-name>PHDDelete</servlet-name>
+  <servlet-class>PHDDelete</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>PHDInfoUpdate</servlet-name>
+  <servlet-class>PHDInfoUpdate</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>GetUserGender</servlet-name>
+  <servlet-class>GetUserGender</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>CreateUser</servlet-name>
+  <servlet-class>CreateUser</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>PHDUpdateStatus</servlet-name>
+  <servlet-class>PHDUpdateStatus</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>EventList</servlet-name>
+  <servlet-class>EventList</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>EventEdit</servlet-name>
+  <servlet-class>EventEdit</servlet-class>
+</servlet>
+
+
+<servlet>
+  <servlet-name>EventUpdate</servlet-name>
+  <servlet-class>EventUpdate</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>InsertEvent</servlet-name>
+  <servlet-class>InsertEvent</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>CheckUserExistence</servlet-name>
+  <servlet-class>CheckUserExistence</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>CreateEvent</servlet-name>
+  <servlet-class>CreateEvent</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>SignUpEvent</servlet-name>
+  <servlet-class>SignUpEvent</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>MyEvents</servlet-name>
+  <servlet-class>MyEvents</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>UserStatistics</servlet-name>
+  <servlet-class>UserStatistics</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>MensajeUpdate</servlet-name>
+  <servlet-class>MensajeUpdate</servlet-class>
+</servlet>
+
+<servlet>
+  <servlet-name>InsertMensaje</servlet-name>
+  <servlet-class>InsertMensaje</servlet-class>
+</servlet>
+
+<servlet-mapping>
+  <servlet-name>MensajeUpdate</servlet-name>
+  <url-pattern>/MensajeUpdate</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>InsertMensaje</servlet-name>
+  <url-pattern>/InsertMensaje</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>UserStatistics</servlet-name>
+  <url-pattern>/UserStatistics</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>MyEvents</servlet-name>
+  <url-pattern>/MyEvents</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>SignUpEvent</servlet-name>
+  <url-pattern>/SignUpEvent</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>CreateEvent</servlet-name>
+  <url-pattern>/CreateEvent</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>CheckUserExistence</servlet-name>
+  <url-pattern>/CheckUserExistence</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>InsertEvent</servlet-name>
+  <url-pattern>/InsertEvent</url-pattern>
+</servlet-mapping>
+
+
+<servlet-mapping>
+  <servlet-name>EventUpdate</servlet-name>
+  <url-pattern>/EventUpdate</url-pattern>
+</servlet-mapping>
+
+
+<servlet-mapping>
+  <servlet-name>EventEdit</servlet-name>
+  <url-pattern>/EventEdit</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>EventList</servlet-name>
+  <url-pattern>/EventList</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>PHDUpdateStatus</servlet-name>
+  <url-pattern>/PHDUpdateStatus</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>CreateUser</servlet-name>
+  <url-pattern>/CreateUser</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>GetUserGender</servlet-name>
+  <url-pattern>/GetUserGender</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>PHDInfoUpdate</servlet-name>
+  <url-pattern>/PHDInfoUpdate</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>PHDDelete</servlet-name>
+  <url-pattern>/PHDDelete</url-pattern>
+</servlet-mapping>
 
 <servlet-mapping>
   <servlet-name>LogoutServlet</servlet-name>
@@ -122,5 +295,15 @@
   <url-pattern>/FetchEventsServlet</url-pattern>
 </servlet-mapping>
 
+<servlet-mapping>
+  <servlet-name>MensajeEdit</servlet-name>
+  <url-pattern>/MensajeEdit</url-pattern>
+</servlet-mapping> 
+
+
+<servlet-mapping>
+  <servlet-name>MensajeList</servlet-name>
+  <url-pattern>/MensajeList</url-pattern>
+</servlet-mapping>
 
 </web-app>

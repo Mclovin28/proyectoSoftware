@@ -397,3 +397,13 @@ left: 0;
 z-index: -1;
 }
 
+
+    
+.tableinfo{
+  margin-top: 80px;
+  margin-left:20px;
+  margin-right: 80px;
+  text-align: center;
+  width: 60%;
+  color: black;
+}

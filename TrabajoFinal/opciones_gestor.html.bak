@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opciones Gestor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<script>
+    function clearCookies() {
+  document.cookie.split(';').forEach(function(c) {
+    document.cookie = c.replace(/^ +/, '').replace(/=.*/, '=;expires=' + new Date().toUTCString() + ';path=/');
+  });
+}
+    function clearLocalStorage() {
+  localStorage.clear();
+}
+
+function clearSessionStorage() {
+  sessionStorage.clear();
+}
+
+function logout() {
+  // Perform the cleanup
+  clearCookies();
+  clearLocalStorage();
+  clearSessionStorage();
+
+  // Redirect the user to the logout servlet
+  window.location.href = '/TrabajoFinal/LogoutServlet';
+}
+</script>
+<body>
+    
+    <div class="background-image"></div>
+    <div class="login-container2">
+        <h1>Opciones Gestor</h1>
+        <form method="get" action="PHDList">
+            <input type="submit" value="Editar lista PHD">
+        </form>
+        <form method="get" action="calendario.jsp">
+            <input type="submit" value="Rellenar calendario">
+        </form>
+        
+		<form method="get" action="eventosdoctorando.html">
+            <input type="submit" value="Eventos">
+        </form>
+        <nav style="text-align: center;">
+          <button onclick="logout()" class="btn btn-outline-danger" style="font-size: 14px; color: #953A27;">Logout</button>
+
+        </nav>
+        
+
+    </div>
+
+        <footer class="py-4 d-flex justify-content-center cas-footer" style="position: absolute; bottom: 0; width: 70%; text-align: center;">
+            <span class="mr-2 d-inline-block" style="font-size:0.75em; color: white; text-align: center;">Campus Universitario. 31009 Pamplona. Navarra (Espa&ntilde;a). Tel. +34 948 42 56 00.</span>
+        </footer>
+
+</body>
+</html>

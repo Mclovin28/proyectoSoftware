@@ -11,12 +11,6 @@ public class MensajeData {
 	String Mensaje;
 	String Realizado;
 
-
-	//PHDData (int ID, String UserID, String Password) { // constructor (nombre igual a la clase)
-        //this.ID    = ID; // referirte a los que estan arriba y lo igualas a lo que le ingresas.
-        //this.UserID  = UserID;
-        //this.Password = Password;
-    //}
 	
 	MensajeData (String ID, String UserID, String Mensaje, String Realizado) { // constructor (nombre igual a la clase)
 		this.ID  = ID;
@@ -25,10 +19,15 @@ public class MensajeData {
 		this.Realizado=Realizado;
 
     }
+	MensajeData (String ID, String Realizado) { // constructor (nombre igual a la clase)
+		this.ID  = ID;
+		this.Realizado=Realizado;
+
+    }
 	
 	public static Vector<MensajeData> getMensajeList(Connection connection){
         Vector<MensajeData> vec = new Vector<MensajeData>();
-//definir el sql
+
         String sql = "Select ID, UserID, Mensaje, Realizado FROM Mensajes";
         System.out.println("getMensajeList: " + sql); // verificar lo que hago
 		
@@ -51,26 +50,46 @@ public class MensajeData {
         }
         return vec;
     }
+	public static int metodoUpdate(Connection connection, MensajeData Mensaje) {
+		String sql ="UPDATE Mensajes ";
+		sql+= "SET UserID= ?, Mensaje= ?, Realizado= ?";
+		sql+= " WHERE ID = ?";
+		System.out.println("metodoUpdate: " + sql);
+        int n = 0;
+		try {
+			
+			PreparedStatement stmtUpdate= connection.prepareStatement(sql);
+			stmtUpdate.setString(1,Mensaje.UserID);
+            stmtUpdate.setString(2,Mensaje.Mensaje);
+            stmtUpdate.setString(3,Mensaje.Realizado);
+            stmtUpdate.setString(4,Mensaje.ID);
+			// al se run update se guarda en un int n
+			n = stmtUpdate.executeUpdate();
+			stmtUpdate.close();
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+			System.out.println("Error in metodoUpdate: " + sql + " Exception: " + e);
+		}
+			return n;
+	}
 	
-	//vamos a crear un metodo que nos devuelva UN supplier (Ussers), cuando le ingresemos un connection
-     //y un id (Connection connection, int id)
-	 
+	
 	 
 	public static MensajeData getMensajeEdit(Connection connection, String id) {
-		MensajeData supplier = null;
+		MensajeData Mensaje = null;
 		String sql = "Select ID, UserID, Mensaje, Realizado FROM Mensajes";
 		sql += " WHERE Mensajes.ID=?";
 		System.out.println("getMensajeEdit: " + sql);
 		try {
-			// comunicacion con la BBDD
+			
 			PreparedStatement pstmt=connection.prepareStatement(sql); // mas seguro para eviatr hackeos y por el ?
 			pstmt.setString(1, id);
 			ResultSet result = pstmt.executeQuery();
-			
-			// Con este while vamos a ir recorriendo linea a linea la matriz Resultset que nos devuelve el sql y vamo a crear UN Suppliers con los valores de las columnas 
+
             
 			while(result.next()) {
-				supplier = new MensajeData(
+				Mensaje = new MensajeData(
 					result.getString("ID"),
 					result.getString("UserID"),
 					result.getString("Mensaje"),
@@ -83,23 +102,23 @@ public class MensajeData {
 			e.printStackTrace();
 			System.out.println("Error in getMensajeList: " + sql + " Exception: " + e);
 		}
-		return supplier;
+		return Mensaje;
 	}
 	
-	/*
-	public static int metodoUpdate(Connection connection, MensajeData supplier) {
-		String sql ="UPDATE Ussers ";
-			sql+= "SET UserID = ?, Password = ?, Role= ?";
-			sql+= " WHERE ID = ?";
-			System.out.println("metodoUpdate: " + sql);
+
+	public static int InsertMensaje(Connection connection, MensajeData Mensaje) {
+		String sql ="INSERT INTO Mensajes (ID, UserID, Mensaje, Realizado) "
+            + "VALUES (?, ?, ?, ?)";
+			System.out.println("InsertMensaje: " + sql);
 			int n = 0;
+			
 		try {
 			
 			PreparedStatement stmtUpdate= connection.prepareStatement(sql);
-			stmtUpdate.setString(1,supplier.UserID);
-			stmtUpdate.setString(2,supplier.Password);
-			stmtUpdate.setString(3,supplier.Role);
-			stmtUpdate.setInt(4,supplier.ID);
+			stmtUpdate.setString(1,Mensaje.ID);
+			stmtUpdate.setString(2,Mensaje.UserID);
+			stmtUpdate.setString(3,Mensaje.Mensaje);
+			stmtUpdate.setString(4,Mensaje.Realizado);
 			// al se run update se guarda en un int n
 			n = stmtUpdate.executeUpdate();
 			stmtUpdate.close();
@@ -110,31 +129,17 @@ public class MensajeData {
 		}
 			return n;
 	}
+    public static void deleteMensaje(Connection connection, String ID) {
+        String sql = "DELETE FROM Mensajes WHERE ID = ?";
 
-	public static int insertSupplier(Connection connection, MensajeData supplier) {
-		String sql ="INSERT INTO Ussers (UserID, Password, Role, CompanyName, ContactTitle) "
-            + "VALUES (?, ?, ?, ?, ?)";
-			System.out.println("insertSupplier: " + sql);
-			int n = 0;
-			
-		try {
-			
-			PreparedStatement stmtUpdate= connection.prepareStatement(sql);
-			stmtUpdate.setString(1,supplier.UserID);
-			stmtUpdate.setString(2,supplier.Password);
-			stmtUpdate.setString(3,supplier.Role);
-			stmtUpdate.setString(4,"Mercadona");
-			stmtUpdate.setString(5,"Ventas manager");
-			// al se run update se guarda en un int n
-			n = stmtUpdate.executeUpdate();
-			stmtUpdate.close();
-			
-		} catch(SQLException e) {
-			e.printStackTrace();
-			System.out.println("Error in metodoUpdate: " + sql + " Exception: " + e);
-		}
-			return n;
-	}*/
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, ID);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error deleting Message with ID: " + e.getMessage());
+        }
+    }
+
 
 	
 	

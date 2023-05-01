@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta charset="UTF-8" />
+    <title>My Events</title>
+    <script>
+      function fetchMyEvents() {
+        $.ajax({
+          url: "/TrabajoFinal/MyEvents",
+          method: "GET",
+          success: function (response) {
+            if (Array.isArray(response) && response.length === 0) {
+              document.getElementById("myEvents").innerHTML =
+                "You are not attending any events.";
+            } else {
+              try {
+                const events = response;
+                let eventsHTML =
+                  "<table border='1' cellpadding='5' cellspacing='0'>";
+                eventsHTML +=
+                  "<tr><th>Event Name</th><th>Place</th><th>Description</th><th>Type</th></tr>";
+                events.forEach(function (event) {
+                  eventsHTML += "<tr>";
+                  eventsHTML += "<td>" + event.eventName + "</td>";
+                  eventsHTML += "<td>" + event.lugar + "</td>";
+                  eventsHTML += "<td>" + event.description + "</td>";
+                  eventsHTML += "<td>" + event.type + "</td>";
+                  eventsHTML += "</tr>";
+                });
+                eventsHTML += "</table>";
+                document.getElementById("myEvents").innerHTML = eventsHTML;
+              } catch (error) {
+                console.error("Error occurred while parsing response:", error);
+                alert("Error occurred while parsing response!");
+              }
+            }
+          },
+
+          error: function (jqXHR, textStatus, errorThrown) {
+            console.log("Raw server response:", jqXHR.responseText);
+            console.error(
+              "Error occurred while fetching your events:",
+              textStatus,
+              errorThrown,
+              errorResponse.error
+            );
+            alert(
+              "Error occurred while fetching your events! Details: " +
+                errorResponse.error
+            );
+          },
+        });
+      }
+
+      $(document).ready(function () {
+        fetchMyEvents();
+      });
+    </script>
+  </head>
+  <body>
+    <h1>My Events</h1>
+    <div id="myEvents"></div>
+  </body>
+</html>

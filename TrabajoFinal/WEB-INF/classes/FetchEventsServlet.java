@@ -20,12 +20,14 @@ import com.google.gson.Gson;
 public class FetchEventsServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         try {
             List<Event> events = new ArrayList<Event>();
 
             try (Connection conn = ConnectionUtils.getConnection()) {
-                String query = "SELECT EventID, FechaI, FechaF, Descripcion, ID FROM Fecha"; // Update the query to fetch the event ID
+                String query = "SELECT EventID, FechaI, FechaF, Descripcion, ID FROM Fecha"; // Update the query to
+                                                                                             // fetch the event ID
                 PreparedStatement stmt = conn.prepareStatement(query);
                 ResultSet rs = stmt.executeQuery();
                 int rowCount = 0;
@@ -40,7 +42,6 @@ public class FetchEventsServlet extends HttpServlet {
                     String end = endTimestamp == null ? null : endTimestamp.toString();
                     String userId = rs.getString("ID"); // Fetch the user ID
                     events.add(new Event(eventId, title, start, end, userId)); // Add the event ID to the event object
-
 
                     System.out.println("Row " + rowCount + ":");
                     System.out.println("Title: " + title);
@@ -68,5 +69,3 @@ public class FetchEventsServlet extends HttpServlet {
         }
     }
 }
-
-

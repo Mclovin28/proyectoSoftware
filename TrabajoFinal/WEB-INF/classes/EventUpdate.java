@@ -9,30 +9,29 @@ import java.sql.Connection;
 
 @SuppressWarnings("serial")
 public class EventUpdate extends HttpServlet {
-    Connection connection;
+	Connection connection;
 
-    public void init(ServletConfig config) throws ServletException {
-        super.init(config);
-        connection = ConnectionUtils.getConnection();
-    }
-	
-	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException  {
+	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
+		connection = ConnectionUtils.getConnection();
+	}
+
+	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		res.setContentType("text/html");
 		PrintWriter toClient = res.getWriter();
 		HttpSession session = req.getSession();
-		//String userRole = (String)session.getAttribute("userRole");
+		// String userRole = (String)session.getAttribute("userRole");
 
-		
-		int idStr = Integer.parseInt(req.getParameter("EventID")); 
+		int idStr = Integer.parseInt(req.getParameter("EventID"));
 		String pass = req.getParameter("EventName");
 		String role = req.getParameter("Lugar");
+		String description = req.getParameter("Description");
 		EventData Event = new EventData(
-			idStr,
-			pass,
-			role
-		);
+				idStr,
+				pass,
+				role,
+				description);
 		int n = EventData.EventUpdate(connection, Event);
 		res.sendRedirect("EventList");
 	}
 }
-	

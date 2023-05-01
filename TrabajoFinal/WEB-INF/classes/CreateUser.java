@@ -15,7 +15,8 @@ public class CreateUser extends HttpServlet {
         super();
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String area = request.getParameter("area");
@@ -27,10 +28,11 @@ public class CreateUser extends HttpServlet {
         String role = request.getParameter("role");
 
         Connection connection = null;
-
+        String[] arrOfStr = email.split("@", 2);
+        String username = arrOfStr[0];
         try {
             connection = ConnectionUtils.getConnection();
-            boolean userCreated = createUser(connection, email, password, area, city, mobile, office, name, sex, role);
+            boolean userCreated = createUser(connection, email, password, area, city, mobile, office, name, sex, role,username);
 
             if (userCreated) {
                 response.setStatus(HttpServletResponse.SC_OK);
@@ -47,8 +49,9 @@ public class CreateUser extends HttpServlet {
         }
     }
 
-    private boolean createUser(Connection connection, String email, String password, String area, String city, String mobile, String office, String name, String sex, String role) throws Exception {
-        String sql = "INSERT INTO Users (UserId, Password, Area, Ciudad, Movil, Despacho, Nombre, Sexo, Role) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private boolean createUser(Connection connection, String email, String password, String area, String city,
+            String mobile, String office, String name, String sex, String role, String username) throws Exception {
+        String sql = "INSERT INTO Users (UserId, Password, Area, Ciudad, Movil, Despacho, Nombre, Sexo, Role, UserName) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, email);
         statement.setString(2, password);
@@ -59,6 +62,7 @@ public class CreateUser extends HttpServlet {
         statement.setString(7, name);
         statement.setString(8, sex);
         statement.setString(9, role);
+        statement.setString(10, username);
 
         int rowsInserted = statement.executeUpdate();
         return rowsInserted > 0;

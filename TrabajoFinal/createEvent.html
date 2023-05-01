@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <meta charset="UTF-8" />
+        <title>Create Event</title>
+        <script>
+            function fetchUserRole() {
+                $.ajax({
+                    url: "/TrabajoFinal/CreateEvent",
+                    method: "GET",
+                    success: function (response) {
+                        const userRole = response.userRole;
+                        if (userRole === "manager") {
+                            $("#createEventForm").show();
+                        } else {
+                            alert(
+                                "No tienes acceso a esta función, habla con tu encargado"
+                            );
+                            window.location.href = "eventosdoctorando.html";
+                        }
+                    },
+                });
+            }
+
+            $(document).ready(function () {
+                fetchUserRole();
+
+                $("#createEventForm").submit(function (e) {
+                    e.preventDefault();
+                    $.ajax({
+                        url: "/TrabajoFinal/CreateEvent",
+                        method: "POST",
+                        data: $(this).serialize(),
+                        success: function (response) {
+                            if (response.success) {
+                                alert("Event created successfully!");
+                            } else {
+                                alert("Failed to create event!");
+                            }
+                            window.location.href = "eventosdoctorando.html";
+                        },
+                        error: function () {
+                            alert(
+                                "Error occurred while processing the request!"
+                            );
+                            window.location.href = "eventosdoctorando.html";
+                        },
+                    });
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <form id="createEventForm" style="display: none">
+            <h1>Create Event</h1>
+            <label for="eventName">Event Name:</label>
+            <input
+                type="text"
+                id="eventName"
+                name="eventName"
+                required
+            /><br /><br />
+            <label for="lugar">Lugar:</label>
+            <input type="text" id="lugar" name="lugar" required /><br /><br />
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea
+            ><br /><br />
+            <input type="submit" value="Create Event" />
+        </form>
+    </body>
+</html>

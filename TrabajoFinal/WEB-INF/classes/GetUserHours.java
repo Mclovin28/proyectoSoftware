@@ -21,13 +21,14 @@ import org.json.JSONObject;
 import java.time.LocalDateTime;
 import java.time.Duration;
 import java.time.format.DateTimeFormatter;
+
 @WebServlet("/GetUserHours")
 public class GetUserHours extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         HttpSession session = request.getSession(); // Get the session object
         String userId = (String) session.getAttribute("username"); // Retrieve the user ID from the session
         LocalDateTime loginTime = (LocalDateTime) session.getAttribute("loginTime");
@@ -42,7 +43,7 @@ public class GetUserHours extends HttpServlet {
             try {
                 Connection conn = ConnectionUtils.getConnection(); // Use ConnectionUtils to get the connection
                 Statement stmt = conn.createStatement();
-                hours = Horas.getHours(conn, id,loginTime);
+                hours = Horas.getHours(conn, id, loginTime);
                 System.out.println(hours.remainingHours);
             } catch (Exception e) {
                 e.printStackTrace();

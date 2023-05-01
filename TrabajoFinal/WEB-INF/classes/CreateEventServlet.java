@@ -13,7 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/CreateEventServlet")
 public class CreateEventServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         try {
             String title = request.getParameter("title");
             String start = request.getParameter("start");
@@ -32,7 +33,11 @@ public class CreateEventServlet extends HttpServlet {
             boolean updateSuccessful = false;
 
             try (Connection conn = ConnectionUtils.getConnection()) {
-                String query = "INSERT INTO Fecha (FechaI, FechaF, Descripcion, ID) VALUES (?, ?, ?, ?)"; // Modify the query to include the assigned_to column
+                String query = "INSERT INTO Fecha (FechaI, FechaF, Descripcion, ID) VALUES (?, ?, ?, ?)"; // Modify the
+                                                                                                          // query to
+                                                                                                          // include the
+                                                                                                          // assigned_to
+                                                                                                          // column
                 PreparedStatement stmt = conn.prepareStatement(query);
                 stmt.setTimestamp(1, startTimestamp);
                 stmt.setTimestamp(2, endTimestamp);
@@ -63,4 +68,3 @@ public class CreateEventServlet extends HttpServlet {
         }
     }
 }
-

@@ -16,20 +16,23 @@ public class PHDDelete extends HttpServlet {
     public PHDDelete() {
         super();
     }
+
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
         connection = ConnectionUtils.getConnection();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         String userID = request.getParameter("UserID");
-        
+
         PHDData.deleteUser(connection, userID);
 
         response.sendRedirect("PHDList");
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         doGet(request, response);
     }
 }

@@ -1,48 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Area interna Gestor</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<script>
-    function clearLocalStorage() {
-  localStorage.clear();
-}
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Area interna Gestor</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <script>
+        function clearLocalStorage() {
+            localStorage.clear();
+        }
 
-function clearSessionStorage() {
-  sessionStorage.clear();
-}
-function clearCookies() {
-  document.cookie.split(';').forEach(function(c) {
-    document.cookie = c.replace(/^ +/, '').replace(/=.*/, '=;expires=' + new Date().toUTCString() + ';path=/');
-  });
-}
+        function clearSessionStorage() {
+            sessionStorage.clear();
+        }
+        function clearCookies() {
+            document.cookie.split(";").forEach(function (c) {
+                document.cookie = c
+                    .replace(/^ +/, "")
+                    .replace(
+                        /=.*/,
+                        "=;expires=" + new Date().toUTCString() + ";path=/"
+                    );
+            });
+        }
 
-function logout() {
-  // Perform the cleanup
-  clearCookies();
-  clearLocalStorage();
-  clearSessionStorage();
+        function logout() {
+            // Perform the cleanup
+            clearCookies();
+            clearLocalStorage();
+            clearSessionStorage();
 
-  // Redirect the user to the logout servlet
-  window.location.href = '/TrabajoFinal/LogoutServlet';
-}
-</script>
-<body>
-    <nav>
-        <!-- Add other navigation items here -->
-        <button onclick="logout()" class="btn btn-outline-danger">Logout</button>
-    </nav>
-    <div class="background-image"></div>
-    <div class="login-container">
-        <h1>¡BIENVENIDO GESTOR!</h1>
-        <form>
-			<input type="submit" value="Mostrar lista Doctorandos">
-            <input type="submit" value="Asignar Exámenes">
-        </form>
-    </div>
-</body>
+            // Redirect the user to the logout servlet
+            window.location.href = "/TrabajoFinal/LogoutServlet";
+        }
+    </script>
+    <body>
+        <nav>
+            <!-- Add other navigation items here -->
+            <button onclick="logout()" class="btn btn-outline-danger">
+                Logout
+            </button>
+        </nav>
+        <div class="background-image"></div>
+        <div class="login-container">
+            <h1>¡BIENVENIDO GESTOR!</h1>
+            <form>
+                <input type="submit" value="Mostrar lista Doctorandos" />
+                <input type="submit" value="Asignar Exámenes" />
+            </form>
+        </div>
+    </body>
 </html>
-

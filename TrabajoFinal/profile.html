@@ -33,7 +33,7 @@ function setImage(gender) {
 
 function toggleEditMode() {
   const isEditMode = document.getElementById('editButton').innerText === 'Guardar';
-  const fields = ['email', 'mobile', 'office','fullName'];
+  const fields = ['email', 'mobile', 'office',];
   
   if (isEditMode) {
     const updatedData = {};
@@ -163,7 +163,7 @@ function logout() {
 <body>
   <nav>
     <!-- Add other navigation items here -->
-    <button onclick="logout()" class="btn btn-outline-danger">Logout</button>
+    <button onclick="logout()" class="btn btn-outline-danger"></button>
   </nav>
     <div class="container">
         <div class="main-body">
@@ -188,7 +188,11 @@ function logout() {
                           <h2 id="Nombre"></h2>
                           <p class="text-secondary mb-1" id="Area"></p>
                           <p class="text-muted font-size-sm" id="Ciudad"></p><BR>
-                          <button class="btn btn-outline-primary" onclick="window.location.href='https://mail.google.com'">Contactar</button>
+                          <button class="btn btn-outline-primary" onclick="window.location.href='https://mail.google.com'">Contactar</button><br><br>
+                          <nav>
+                            <!-- Add other navigation items here -->
+                            <button onclick="logout()" class="btn btn-outline-primary">Logout</button>
+                          </nav>
                         </div>
                       </div>
                     </div>
@@ -269,8 +273,11 @@ function logout() {
     
                   <div>
                     <form method="GET" action="eventosdoctorando.html">
-                    <input type="submit" value="proximos eventos">
+                    <input type="submit" value="Próximos eventos">
                     </form>
+                    <form method="GET" action="calendario.jsp">
+                      <input type="submit" value="Ver calendario">
+                      </form>
                   </div>
     
                 </div>

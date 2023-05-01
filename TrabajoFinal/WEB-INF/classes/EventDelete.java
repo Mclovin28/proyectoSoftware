@@ -16,6 +16,7 @@ public class EventDelete extends HttpServlet {
     public EventDelete() {
         super();
     }
+
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
         connection = ConnectionUtils.getConnection();
@@ -23,13 +24,14 @@ public class EventDelete extends HttpServlet {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
 
-        int idStr = Integer.parseInt(req.getParameter("EventID")); 
+        int idStr = Integer.parseInt(req.getParameter("EventID"));
         EventData.deleteEvent(connection, idStr);
 
         response.sendRedirect("EventList");
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         doGet(request, response);
     }
 }

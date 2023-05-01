@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <meta charset="UTF-8" />
+        <title>User Statistics</title>
+        <script>
+            function fetchUserStatistics() {
+                $.ajax({
+                    url: "/TrabajoFinal/UserStatistics",
+                    method: "GET",
+                    dataType: 'json', // Added this line
+                    success: function(response) {
+                        if (Array.isArray(response) && response.length === 0) {
+                            document.getElementById("userStats").innerHTML = "No user statistics found.";
+                        } else {
+                            let tableHTML = "<table>";
+                            tableHTML += "<tr><th>User ID</th><th>Name</th><th>Events Attended</th></tr>";
+                            response.forEach(function(userStat) { // Use 'response' directly here
+                                tableHTML += "<tr>";
+                                tableHTML += "<td>" + userStat.userID + "</td>";
+                                tableHTML += "<td>" + userStat.nombre + "</td>";
+                                tableHTML += "<td>" + userStat.eventCount + "</td>";
+                                tableHTML += "</tr>";
+                            });
+                            tableHTML += "</table>";
+                            document.getElementById("userStats").innerHTML = tableHTML;
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        const errorResponse = JSON.parse(jqXHR.responseText);
+                        console.error("Error occurred while fetching user statistics:", textStatus, errorThrown, errorResponse.error);
+                        alert("Error occurred while fetching user statistics! Details: " + errorResponse.error);
+                    }
+                });
+            }
+            
+            $(document).ready(function() {
+                fetchUserStatistics();
+            });
+        </script>
+    </head>
+    <body>
+        <h1>User Statistics</h1>
+        <div id="userStats"></div>
+    </body>
+</html>
